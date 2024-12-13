@@ -1,0 +1,28 @@
+plugins {
+    id 'groovy'
+    id 'application'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'io.freefair.lombok'
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation project(':data')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.codehaus.groovy:groovy'
+    implementation 'org.modelmapper:modelmapper'
+
+    testImplementation('org.spockframework:spock-core')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass = 'com.myapp.App'
+}

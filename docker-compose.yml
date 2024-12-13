@@ -1,0 +1,22 @@
+version : "3.8"
+services :
+  postgres_books_mgmt :
+    image : postgres:15-alpine3.17
+    restart : always
+    environment :
+      POSTGRES_USER : books
+      POSTGRES_PASSWORD : books
+      POSTGRES_DB : books
+    volumes :
+      - books_mgmt:/var/lib/postgres
+  books_mgmt_app :
+    build :
+      context : .
+      dockerfile : Dockerfile
+    ports :
+      - "8080:8080"
+    depends_on :
+      - postgres_books_mgmt
+
+volumes :
+  books_mgmt :
